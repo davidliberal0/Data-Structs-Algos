@@ -32,6 +32,12 @@ class Stack {
     console.log(`Top element is ${this.items[this.count - 1]}`);
     return this.items[this.count - 1];
   }
+
+  // check if stack is empty
+  isEmpty() {
+    console.log(this.count == 0 ? "Stack is empty" : "Stack is NOT empty");
+    return this.count == 0;
+  }
 }
 
 // create stack
@@ -40,3 +46,8 @@ const stack = new Stack();
 stack.push(100);
 stack.push(200);
 stack.push(300);
+
+stack.pop();
+stack.pop();
+
+stack.isEmpty();
