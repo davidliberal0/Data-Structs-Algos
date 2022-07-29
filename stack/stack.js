@@ -24,6 +24,7 @@ class Stack {
     let deleteItem = this.items[this.count - 1];
     this.count -= 1;
     console.log(`${deleteItem} removed`);
+    console.log(`Here you go${this.items}`);
     return deleteItem;
   }
 
@@ -38,6 +39,12 @@ class Stack {
     console.log(this.count == 0 ? "Stack is empty" : "Stack is NOT empty");
     return this.count == 0;
   }
+
+  // check size of stack
+  size() {
+    console.log(`${this.count} elements in stack`);
+    return this.count;
+  }
 }
 
 // create stack
@@ -49,5 +56,7 @@ stack.push(300);
 
 stack.pop();
 stack.pop();
+
+stack.size();
 
 stack.isEmpty();
