@@ -26,6 +26,12 @@ class Stack {
     console.log(`${deleteItem} removed`);
     return deleteItem;
   }
+
+  // check top element in stack
+  peek() {
+    console.log(`Top element is ${this.items[this.count - 1]}`);
+    return this.items[this.count - 1];
+  }
 }
 
 // create stack
