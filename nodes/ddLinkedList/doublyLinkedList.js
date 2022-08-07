@@ -42,4 +42,29 @@ class DoublyLinkedList {
       this.head = newTail;
     }
   }
+
+  removeHead() {
+    // store the current head of the list to be removed
+    const removedHead = this.head;
+    // if there is no head, return - do nothing
+    if (!removedHead) {
+      return;
+    }
+
+    // set the head of the list to the next node of the removedHead
+    this.head = removedHead.getNextNode();
+    // set the head of list's previous node to null, if it contains a value
+    if (this.head) {
+      this.head.setPreviousNode(null);
+    }
+
+    // if the list has only a 1 item in it, we must also remvoed the tail
+    // along with the head
+    if (removedHead === this.tail) {
+      this.removedTail;
+    }
+
+    // retur the removedHead data
+    return removedHead.data;
+  }
 }
