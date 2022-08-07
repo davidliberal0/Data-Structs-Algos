@@ -91,4 +91,41 @@ class DoublyLinkedList {
 
     return removedTail.data;
   }
+
+  removeByData(data) {
+    let nodeToRemove;
+    let currentNode = this.head; // iterator for looping through LinkedList
+    // loop through the list
+    while (currentNode !== null) {
+      // check if currentNode's data matches the data we want to remove
+      if (currentNode.data === data) {
+        // set nodeToTemove to currentNode
+        nodeToRemove = currentNode;
+        break;
+      }
+      // iterate to next node (update current node)
+      currentNode = currentNode.getNextNode();
+    }
+
+    // if not found, return null
+    if (!nodeToRemove) {
+      return null;
+    }
+    // check the nodeToRemove
+    if (nodeToRemove === this.head) {
+      this.removeHead();
+    } else if (nodeToRemove === this.tail) {
+      this.removeTail();
+    } else {
+      // store the nodeToRemove's next node
+      const nextNode = nodeToRemove.getNextNode();
+      // store the nodeToRemove's previous node
+      const previousNode = nodeToRemove.getPreviousNode();
+      // rearrange nodes
+      nextNode.setPreviousNode(previousNode);
+      previousNode.setNextNode(nextNode);
+    }
+
+    return nodeToRemove;
+  }
 }
