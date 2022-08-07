@@ -129,3 +129,5 @@ class DoublyLinkedList {
     return nodeToRemove;
   }
 }
+
+module.exports = DoublyLinkedList;
