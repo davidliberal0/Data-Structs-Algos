@@ -69,20 +69,67 @@ class LinkedList {
 }
 
 const swapNodes = (list, data1, data2) => {
+  // define and initialize node1 and node2 to the beginning of the list
   let node1 = list.head;
   let node2 = list.head;
 
+  // define variables for keeping track of previous nodes
   let node1Prev = null;
   let node2Prev = null;
 
+  // loop through the linked-list until we find the node that matches the given data
   while (node1 !== null) {
     if (node1.data === data1) {
       break;
     }
 
-    node1Prev = node1;
-    node1.getNextNode();
+    // if node does not match data, then go to the next node while keeping track of the prevous node
+    node1Prev = node1; // set the previous node value to node1's current before iterating ( or finding the next node)
+    node1.getNextNode(); // get the next node of the list
   }
+
+  while (node2 !== null) {
+    if (node2.data === data2) {
+      break;
+    }
+
+    // if node does not match data, then go to the next node while keeping track of the prevous node
+    node2Prev = node2; // set the previous node value to node1's current before iterating ( or finding the next node)
+    node2.getNextNode(); // get the next node of the list
+  }
+
+  // Edge case handling - if one or more of the ndoes is not found in the list
+  if (node1 === null || node2 === null) {
+    console.log("Swap not possible - one or more element is not in the list");
+    return;
+  }
+
+  // Edge case handling - if the data1 and 2 are the same
+  if (data1 === data2) {
+    console.log("Elements are the same - no swap needed.");
+    return;
+  }
+
+  // first, check if node1's prevous node is null, if so, node1 was the head and we can just set node2 as the new head.
+  // If node1 was not the head, we just use node1's previous node to place node2 where node1 was located in the lis. ]
+  // ( which was after its prevous node(node1Prev))
+  if (node1Prev === null) {
+    list.head = node2;
+  } else {
+    node1Prev.setNextNode(node2);
+  }
+
+  if (node2Prev === null) {
+    list.head = node1;
+  } else {
+    node2Prev.setNextNode(node1);
+  }
+
+  // Updating the Node's Pointers
+  let temp = node1.getNextNode();
+
+  node1.setNextNode(node2.getNextNode());
+  node2.setNextNode(temp);
 };
 
 module.exports = LinkedList;
